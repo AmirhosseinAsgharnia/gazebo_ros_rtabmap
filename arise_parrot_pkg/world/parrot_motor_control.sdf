@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<sdf version='1.11'>
+  <model name='parrot_motor_control'>
+
+    <static>true</static>
+
+    <plugin filename="gz-sim-joint-controller-system"
+    name="gz::sim::systems::JointController">
+      <joint_name>body_to_propeller_fl</joint_name>
+      <initial_velocity>-30.0</initial_velocity>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-controller-system"
+    name="gz::sim::systems::JointController">
+      <joint_name>body_to_propeller_rl</joint_name>
+      <initial_velocity>30.0</initial_velocity>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-controller-system"
+    name="gz::sim::systems::JointController">
+      <joint_name>body_to_propeller_fr</joint_name>
+      <initial_velocity>30.0</initial_velocity>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-controller-system"
+    name="gz::sim::systems::JointController">
+      <joint_name>body_to_propeller_rr</joint_name>
+      <initial_velocity>-30.0</initial_velocity>
+    </plugin>
+    <!-- <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>body_to_propeller_fl</jointName>
+      <linkName>propeller_fl</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>8.54858e-06</motorConstant>
+      <momentConstant>0.016</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>0</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>body_to_propeller_fr</jointName>
+      <linkName>propeller_fr</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>8.54858e-06</motorConstant>
+      <momentConstant>0.016</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>1</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>body_to_propeller_rl</jointName>
+      <linkName>propeller_rl</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>8.54858e-06</motorConstant>
+      <momentConstant>0.016</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>2</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>body_to_propeller_rr</jointName>
+      <linkName>propeller_rr</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>8.54858e-06</motorConstant>
+      <momentConstant>0.016</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>3</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>    -->
+
+    <plugin name="gz::sim::systems::VelocityControl" filename="libignition-gazebo-velocity-control-system.so">
+      <topic>/bebop/cmd_vel</topic>
+      <linear_only>false</linear_only> <!-- Allows angular rotation too -->
+    </plugin>
+
+  </model>
+
+</sdf>

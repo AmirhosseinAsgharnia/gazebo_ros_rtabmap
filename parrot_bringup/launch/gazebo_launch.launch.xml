@@ -1,0 +1,9 @@
+<launch>
+
+    <include file="$(find-pkg-share parrot_bringup)/launch/gz_path.launch.py"/>
+    <include file="$(find-pkg-share parrot_bringup)/launch/gz_ros_msgs.launch.py"/>
+
+    <!--<node pkg="parrot_controller_pkg" exec="take_off_controller"/>-->
+    <node pkg="arise_parrot_pkg" exec="gazebo_launcher"/>
+    
+</launch>

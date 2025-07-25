@@ -1,0 +1,343 @@
+<?xml version="1.0"?>
+<sdf version='1.11'>
+
+  <model name='parrot_geometry'>
+    
+    <static>false</static>
+    <link name='base_link'>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.503</mass>
+        <inertia>
+          <ixx>1.805e-3</ixx>
+          <ixy>-8.619e-07</ixy>
+          <ixz>1.555e-05</ixz>
+          <iyy>1.764e-3</iyy>
+          <iyz>3.595e-07</iyz>
+          <izz>3.328e-3</izz>
+        </inertia>
+      </inertial>
+
+      <collision name='base_link'>
+        <pose>-0.00424 0.00014 -0.00595 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.316618 0.330564 0.089582</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name='base_link'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://meshes/hull.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor name="imu_sensor" type="imu">
+
+        <always_on>1</always_on>
+        <update_rate>250</update_rate>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.00018665</stddev>
+                <dynamic_bias_stddev>3.8785e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.00018665</stddev>
+                <dynamic_bias_stddev>3.8785e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.00018665</stddev>
+                <dynamic_bias_stddev>3.8785e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.00186</stddev>
+                <dynamic_bias_stddev>0.006</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.00186</stddev>
+                <dynamic_bias_stddev>0.006</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0.00186</stddev>
+                <dynamic_bias_stddev>0.006</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+
+        <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu">
+          <frame_id>base_link</frame_id>
+        </plugin>
+
+        <topic>/sensor/imu</topic>
+
+      </sensor>
+      <sensor name="imager" type="rgbd_camera">
+        <pose>0.1 0 0.1 0 0 0</pose> <!--0 0 0.5 0 1.57 0-->
+
+        <camera name="rs_front">
+          <horizontal_fov>1.50098</horizontal_fov>
+          <lens>
+            <intrinsics>
+              <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
+              <fx>537.292878</fx>
+              <fy>527.000348</fy>
+              <!-- cx = ( width - 1 ) / 2 -->
+              <cx>427.331854</cx>
+              <!-- cy = ( height - 1 ) / 2 -->
+              <cy>240.226888</cy>
+              <s>0</s>
+            </intrinsics>
+          </lens>
+
+          <distortion>
+            <k1>0.004974</k1>
+            <k2>-0.00013</k2>
+            <k3>0.0</k3>
+            <p1>-0.001212</p1>
+            <p2>0.002192</p2>
+            <center>0.5 0.5</center> <!-- still fine unless your model uses a different convention -->
+          </distortion>
+
+          <image>
+            <width>856</width>
+            <height>480</height>
+          </image>
+
+          <clip>
+            <near>0.01</near>
+            <far>300</far>
+          </clip>
+
+          <depth_camera>
+            <clip>
+              <near>0.1</near>
+              <far>10</far>
+            </clip>
+          </depth_camera>
+
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+
+        <always_on>1</always_on>
+        <update_rate>15</update_rate>
+        <visualize>true</visualize>
+        <topic>/bebop/camera</topic>
+      </sensor>
+    </link>
+
+
+
+    <link name='propeller_fl'>
+      <pose relative_to='body_to_propeller_fl'> 0 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.01</mass>
+        <inertia>
+          <!-- Typical approach: ixx == iyy < izz for a disk spinning around Z -->
+          <ixx>2.0e-8</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>2.0e-8</iyy>
+          <iyz>0.0</iyz>
+          <izz>4.0e-8</izz>
+        </inertia>
+      </inertial>
+
+      <visual name='propeller_fl_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://meshes/propeller_fl.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='propeller_fr'>
+      <pose relative_to='body_to_propeller_fr'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <!-- Typical approach: ixx == iyy < izz for a disk spinning around Z -->
+          <ixx>2.0e-8</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>2.0e-8</iyy>
+          <iyz>0.0</iyz>
+          <izz>4.0e-8</izz>
+        </inertia>
+      </inertial>
+
+      <visual name='propeller_fr_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://meshes/propeller_fr.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='propeller_rl'>
+      <pose relative_to='body_to_propeller_rl'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <!-- Typical approach: ixx == iyy < izz for a disk spinning around Z -->
+          <ixx>2.0e-8</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>2.0e-8</iyy>
+          <iyz>0.0</iyz>
+          <izz>4.0e-8</izz>
+        </inertia>
+      </inertial>
+
+      <visual name='propeller_rl_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://meshes/propeller_rl.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='propeller_rr'>
+      <pose relative_to='body_to_propeller_rr'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <!-- Typical approach: ixx == iyy < izz for a disk spinning around Z -->
+          <ixx>2.0e-8</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>2.0e-8</iyy>
+          <iyz>0.0</iyz>
+          <izz>4.0e-8</izz>
+        </inertia>
+      </inertial>
+
+      <visual name='propeller_rr_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://meshes/propeller_rr.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+
+    </link>
+
+    <joint name='body_to_propeller_fl' type='revolute'>
+      <pose relative_to='base_link'>0.08456 0.11463 -0.00501 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>propeller_fl</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name='body_to_propeller_fr' type='revolute'>
+      <pose relative_to='base_link'>0.08456 -0.11435 -0.00501 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>propeller_fr</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name='body_to_propeller_rl' type='revolute'>
+      <pose relative_to='base_link'>-0.09035 0.11452 -0.00501 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>propeller_rl</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name='body_to_propeller_rr' type='revolute'>
+      <pose relative_to='base_link'>-0.09035 -0.11423 -0.00501 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>propeller_rr</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+
+    </joint>
+
+  </model>
+</sdf>

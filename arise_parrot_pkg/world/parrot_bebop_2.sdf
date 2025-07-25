@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<sdf version='1.11'>
+  <model name='bebop'>
+  
+    <pose>0 0 0.05  0 0 1.57</pose>
+    <include merge='true'>
+      <uri>model://parrot_geometry.sdf</uri>
+    </include>
+
+    <include merge='true'>
+      <uri>model://parrot_motor_control.sdf</uri>
+    </include>
+
+  </model>
+
+</sdf>

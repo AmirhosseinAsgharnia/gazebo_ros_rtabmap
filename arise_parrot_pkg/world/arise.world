@@ -1,0 +1,478 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+    
+    <world name="arise_lab">
+        <gravity>0 0 0</gravity>
+        <physics name="1ms" type="ignored">
+        <max_step_size>0.001</max_step_size>
+        <real_time_factor>1.0</real_time_factor>
+        </physics>
+        <plugin
+        filename="gz-sim-physics-system"
+        name="gz::sim::systems::Physics">
+        </plugin>
+        <plugin
+        filename="gz-sim-user-commands-system"
+        name="gz::sim::systems::UserCommands">
+        </plugin>
+        <plugin
+        filename="gz-sim-scene-broadcaster-system"
+        name="gz::sim::systems::SceneBroadcaster">
+        </plugin>
+        <plugin
+        filename="gz-sim-contact-system"
+        name="gz::sim::systems::Contact">
+        </plugin>
+        
+        <plugin
+        filename="gz-sim-sensors-system"
+        name="gz::sim::systems::Sensors">
+        <render_engine>ogre2</render_engine>
+        </plugin>
+
+        <light type="directional" name="lamp_1">
+        <cast_shadows>true</cast_shadows>
+        <pose>0 0 10 0 0 0</pose>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+        <specular>0.2 0.2 0.2 1</specular>
+        <attenuation>
+            <range>1000</range>
+            <constant>0.9</constant>
+            <linear>0.01</linear>
+            <quadratic>0.001</quadratic>
+        </attenuation>
+        <direction>0 0 -1</direction>
+
+        </light>
+        <model name="arise_drone_lab">
+
+            <static>true</static> <!-- Set to true if the model is static -->
+            <pose>2 4 0 0 0 1.57</pose>
+
+            <link name="cage_link">
+
+                <visual name="cage_visual">
+                    <geometry>
+                    <mesh>
+                        <uri>model://meshes/cage.dae</uri> 
+                    </mesh>
+                    </geometry>
+                </visual>
+                
+                <collision name="cage_collision">
+                    <geometry>
+                    <mesh>
+                        <uri>model://meshes/cage.dae</uri> 
+                    </mesh>
+                    </geometry>
+                </collision>
+            </link>
+
+            <link name="logo_link">
+                
+                <visual name="logo_visual">
+                    <pose>0 0 0 0 0 0</pose>
+                    <geometry>
+                        
+                        <mesh>
+                            <uri>model://meshes/exam_plane_s.dae</uri>
+                        </mesh>
+                    </geometry>
+                    <material>
+                        <double_sided>true</double_sided>
+                        <ambient>1 1 1 1</ambient>
+                        <diffuse>0.8 0.8 0.8 1</diffuse>
+                        <specular>1 0.8 0.8 1</specular>
+                        <pbr>
+                            <metal>
+                            <albedo_map>model://meshes/logo.png</albedo_map>
+                            <normal_map>model://meshes/logo.png</normal_map>
+                            </metal>
+                        </pbr>
+                    </material>
+                </visual>
+
+                <visual name="logo_visual_2">
+                <pose>-4 0 0 0 0 -1.57</pose>
+                    <geometry>
+                        
+                        <mesh>
+                            <uri>model://meshes/exam_plane_s.dae</uri>
+                        </mesh>
+                    </geometry>
+                    <material>
+                        <double_sided>true</double_sided>
+                        <ambient>1 1 1 1</ambient>
+                        <diffuse>0.8 0.8 0.8 1</diffuse>
+                        <specular>1 0.8 0.8 1</specular>
+                        <pbr>
+                            <metal>
+                            <albedo_map>model://meshes/logo.png</albedo_map>
+                            <normal_map>model://meshes/logo.png</normal_map>
+                            </metal>
+                        </pbr>
+                    </material>
+                </visual>
+
+                <visual name="logo_visual_3">
+                <pose>-8.15 0 0 0 0 -1.57</pose>
+                    <geometry>
+                        
+                        <mesh>
+                            <uri>model://meshes/exam_plane_s.dae</uri>
+                        </mesh>
+                    </geometry>
+                    <material>
+                        <double_sided>true</double_sided>
+                        <ambient>1 1 1 1</ambient>
+                        <diffuse>0.8 0.8 0.8 1</diffuse>
+                        <specular>1 0.8 0.8 1</specular>
+                        <pbr>
+                            <metal>
+                            <albedo_map>model://meshes/logo.png</albedo_map>
+                            <normal_map>model://meshes/logo.png</normal_map>
+                            </metal>
+                        </pbr>
+                    </material>
+                </visual>
+
+                <visual name="logo_visual_4">
+                <pose>-4.15 4 0 0 0 1.57</pose>
+                    <geometry>
+                        
+                        <mesh>
+                            <uri>model://meshes/exam_plane_s.dae</uri>
+                        </mesh>
+                    </geometry>
+                    <material>
+                        <double_sided>true</double_sided>
+                        <ambient>1 1 1 1</ambient>
+                        <diffuse>0.8 0.8 0.8 1</diffuse>
+                        <specular>1 0.8 0.8 1</specular>
+                        <pbr>
+                            <metal>
+                            <albedo_map>model://meshes/logo.png</albedo_map>
+                            <normal_map>model://meshes/logo.png</normal_map>
+                            </metal>
+                        </pbr>
+                    </material>
+                </visual>
+
+                <visual name="logo_visual_5">
+                <pose>0 4 0 0 0 1.57</pose>
+                    <geometry>
+                        
+                        <mesh>
+                            <uri>model://meshes/exam_plane_s.dae</uri>
+                        </mesh>
+                    </geometry>
+                    <material>
+                        <double_sided>true</double_sided>
+                        <ambient>1 1 1 1</ambient>
+                        <diffuse>0.8 0.8 0.8 1</diffuse>
+                        <specular>1 0.8 0.8 1</specular>
+                        <pbr>
+                            <metal>
+                            <albedo_map>model://meshes/logo.png</albedo_map>
+                            <normal_map>model://meshes/logo.png</normal_map>
+                            </metal>
+                        </pbr>
+                    </material>
+                </visual>
+
+                <visual name="logo_visual_6">
+                <pose>-8.15 4 0 0 0 3.14</pose>
+                    <geometry>
+                        
+                        <mesh>
+                            <uri>model://meshes/exam_plane_s.dae</uri>
+                        </mesh>
+                    </geometry>
+                    <material>
+                        <double_sided>true</double_sided>
+                        <ambient>1 1 1 1</ambient>
+                        <diffuse>0.8 0.8 0.8 1</diffuse>
+                        <specular>1 0.8 0.8 1</specular>
+                        <pbr>
+                            <metal>
+                            <albedo_map>model://meshes/logo.png</albedo_map>
+                            <normal_map>model://meshes/logo.png</normal_map>
+                            </metal>
+                        </pbr>
+                    </material>
+                </visual>
+
+            </link>
+        </model>
+
+        <model name="box_model_1">
+            <pose>0 1 0.15 0 0 0</pose>
+            <link name="box_link">
+                <pose>0 0 0 0 0 0</pose>
+
+                <visual name="box_visual">
+                <geometry>
+                    <box>
+                    <size>1 .1 .3</size> 
+                    </box>
+                </geometry>
+                </visual>
+
+                <collision name="box_visual">
+                <geometry>
+                    <box>
+                    <size>1 .1 .3</size> 
+                    </box>
+                </geometry>
+                </collision>
+            </link>
+
+        </model>
+
+        <model name="box_model_2">
+            <pose>0 -1 0.15 0 0 0.15</pose>
+            <link name="box_link">
+                <pose>0 0 0 0 0 0</pose>
+
+                <visual name="box_visual">
+                <geometry>
+                    <box>
+                    <size>1 .1 .3</size> 
+                    </box>
+                </geometry>
+                </visual>
+
+                <collision name="box_visual">
+                <geometry>
+                    <box>
+                    <size>1 .1 .3</size> 
+                    </box>
+                </geometry>
+                </collision>
+            </link>
+
+        </model>
+
+        <model name="box_model_3">
+            <pose>-1 0 0.15 0 0 0</pose>
+            <link name="box_link">
+                <pose>0 0 0 0 0 0</pose>
+
+                <visual name="box_visual">
+                <geometry>
+                    <box>
+                    <size>.1 1 .3</size> 
+                    </box>
+                </geometry>
+                </visual>
+
+                <collision name="box_visual">
+                <geometry>
+                    <box>
+                    <size>.1 1 .3</size> 
+                    </box>
+                </geometry>
+                </collision>
+            </link>
+
+        </model>
+
+        <model name="box_model_4">
+            <pose>1 2 .15 0 0 0</pose>
+            <link name="box_link">
+                <pose>0 0 0 0 0 0</pose>
+
+                <visual name="box_visual">
+                <geometry>
+                    <box>
+                    <size>1 .1 .3</size> 
+                    </box>
+                </geometry>
+                </visual>
+
+                <collision name="box_visual">
+                <geometry>
+                    <box>
+                    <size>1 .1 .3</size> 
+                    </box>
+                </geometry>
+                </collision>
+            </link>
+
+        </model>
+
+        <model name="landmark_1">
+            <pose>1.8 3.8 .2 0 0 0</pose>
+            <link name="box_link">
+                <pose>0 0 0 0 0 0</pose>
+
+                <visual name="box_visual">
+                <geometry>
+                    <box>
+                    <size>.1 .1 .4</size> 
+                    </box>
+                </geometry>
+                </visual>
+
+                <collision name="box_visual">
+                <geometry>
+                    <box>
+                    <size>.1 .1 .4</size> 
+                    </box>
+                </geometry>
+                </collision>
+            </link>
+
+        </model>
+
+        <model name="landmark_2">
+            <pose>-1.8 -3.8 .5 0 0 0</pose>
+            <link name="box_link">
+                <pose>0 0 0 0 0 0</pose>
+
+                <visual name="box_visual">
+                <geometry>
+                    <box>
+                    <size>.1 .1 1</size> 
+                    </box>
+                </geometry>
+                </visual>
+
+                <collision name="box_visual">
+                <geometry>
+                    <box>
+                    <size>.1 .1 1</size> 
+                    </box>
+                </geometry>
+                </collision>
+            </link>
+
+        </model>
+
+        <model name="landmark_3">
+            <pose>1.8 -3.8 .1 0 0 0</pose>
+            <link name="box_link">
+                <pose>0 0 0 0 0 0</pose>
+
+                <visual name="box_visual">
+                <geometry>
+                    <box>
+                    <size>.2 .1 .2</size> 
+                    </box>
+                </geometry>
+                </visual>
+
+                <collision name="box_visual">
+                <geometry>
+                    <box>
+                    <size>.2 .1 .2</size> 
+                    </box>
+                </geometry>
+                </collision>
+            </link>
+
+        </model>
+
+        <model name="QR_0">
+            <link name="QR_0">
+                <visual name="QR_0">
+
+                <pose>1.5 4 0.5 0 0 0</pose>
+
+                    <geometry>
+                        <plane>
+                        <normal>0 1 0</normal> <!-- Facing Z+ -->
+                        <size>0.2 0.2</size>   <!-- Adjust as needed -->
+                        </plane>
+                    </geometry>
+
+                    <material>
+                        <double_sided>true</double_sided>
+                        <ambient>1 1 1 1</ambient>
+                        <diffuse>0.8 0.8 0.8 1</diffuse>
+                        <specular>1 0.8 0.8 1</specular>
+                        <pbr>
+                            <metal>
+                            <albedo_map>model://meshes/0.png</albedo_map>
+                            <normal_map>model://meshes/0.png</normal_map>
+                            </metal>
+                        </pbr>
+                    </material>
+
+                </visual>
+            </link>
+
+            <link name="QR_1">
+                <visual name="QR_1">
+
+                <pose>-1.5 -4 0.5 0 0 0</pose>
+
+                    <geometry>
+                        <plane>
+                        <normal>0 1 0</normal> <!-- Facing Z+ -->
+                        <size>0.2 0.2</size>   <!-- Adjust as needed -->
+                        </plane>
+                    </geometry>
+
+                    <material>
+                        <double_sided>true</double_sided>
+                        <ambient>1 1 1 1</ambient>
+                        <diffuse>0.8 0.8 0.8 1</diffuse>
+                        <specular>1 0.8 0.8 1</specular>
+                        <pbr>
+                            <metal>
+                            <albedo_map>model://meshes/1.png</albedo_map>
+                            <normal_map>model://meshes/1.png</normal_map>
+                            </metal>
+                        </pbr>
+                    </material>
+
+                </visual>
+            </link>
+
+            <link name="QR_2">
+                <visual name="QR_2">
+
+                <pose>2 -3.5 0.5 0 0 0</pose>
+
+                    <geometry>
+                        <plane>
+                        <normal>1 0 0</normal> <!-- Facing Z+ -->
+                        <size>0.2 0.2</size>   <!-- Adjust as needed -->
+                        </plane>
+                    </geometry>
+
+                    <material>
+                        <double_sided>true</double_sided>
+                        <ambient>1 1 1 1</ambient>
+                        <diffuse>0.8 0.8 0.8 1</diffuse>
+                        <specular>1 0.8 0.8 1</specular>
+                        <pbr>
+                            <metal>
+                            <albedo_map>model://meshes/1.png</albedo_map>
+                            <normal_map>model://meshes/1.png</normal_map>
+                            </metal>
+                        </pbr>
+                    </material>
+
+                </visual>
+            </link>
+        </model>
+
+        <include>
+            <uri>model://parrot_bebop_2.sdf</uri>
+            <name>parrot_bebop_2</name>
+
+            <plugin
+            name="gz::sim::systems::OdometryPublisher"
+            filename="libgz-sim-odometry-publisher-system.so">
+            <odom_publish_topic>/odom</odom_publish_topic>
+            <odom_frame>odom</odom_frame>
+            <robot_base_frame>base_link</robot_base_frame> <!-- 👈 use real link name -->
+            <publish_frequency>30</publish_frequency>
+            <dimensions>3</dimensions>
+            </plugin>
+
+        </include>
+    </world>
+</sdf>
